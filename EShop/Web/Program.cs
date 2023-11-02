@@ -7,8 +7,10 @@ using Services.Interfaces;
 using Services;
 using Data;
 using BundlerMinifier.TagHelpers;
+using Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddRazorComponents().AddInteractiveServerComponents(); // Required for Blazor (Razor Components)
 builder.Services.AddRazorPages().AddNewtonsoftJson();
 builder.Services.AddControllers();
 builder.Services.AddMvc();
@@ -63,15 +65,14 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAntiforgery(); // Required for Blazor routing security
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 
-app.UseEndpoints(endpoints =>
-{
-	endpoints.MapControllers();
-	// ... 
-});
+app.MapControllers();
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 app.MapControllerRoute(
     name: "default",
