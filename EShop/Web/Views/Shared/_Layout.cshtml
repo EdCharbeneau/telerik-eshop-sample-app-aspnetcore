@@ -1,23 +1,26 @@
-﻿<!DOCTYPE html>
+﻿@using Web.Components.Pages
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - Web</title>
-
+	@* <base href="~/" /> *@
 	<link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.0/fluent/fluent-main.css" />
-
+	<component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)"
+			   render-mode="ServerPrerendered" />
 	<environment names="Development">
 		<bundle name="wwwroot/bundles/styles.min.css" />
 	</environment>
 	<environment names="Staging,Production">
 		<link rel="stylesheet" href="~/bundles/styles.min.css" asp-append-version="true" />
 	</environment>
-	
+	@* <link rel="stylesheet" href="~/Web.styles.css" asp-append-version="true" /> *@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://cdn.kendostatic.com/2023.2.829/js/jszip.min.js"></script>
 	<script src="https://cdn.kendostatic.com/2023.2.829/js/kendo.all.min.js"></script>
 	<script src="https://cdn.kendostatic.com/2023.2.829/js/kendo.aspnetmvc.min.js"></script>
+	<script src="~/_content/Telerik.UI.for.Blazor/js/telerik-blazor.js" defer></script>
 	<script src="~/js/product_details.js"></script>
 	<script src="~/js/shopping_cart.js"></script>
 	<script src="~/js/datasource.js"></script>
@@ -49,5 +52,6 @@
 	</script>
 
 	@RenderSection("scripts", required: false)
+	<script src="~/_framework/blazor.web.js"></script>
 </body>
 </html>

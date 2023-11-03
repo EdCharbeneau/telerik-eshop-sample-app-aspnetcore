@@ -11,7 +11,11 @@ namespace Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IProductService productService;
+		public IActionResult Blazor()
+		{
+			return View("_Host");
+		}
+		private readonly IProductService productService;
 
         public HomeController(IProductService productService)
         {
@@ -70,12 +74,6 @@ namespace Web.Controllers
             ReportSourceModel report = new ReportSourceModel() { ReportId = "ProductCatalogNew.trdp" };
 
             return View("~/Views/Shared/ReportViewer.cshtml", report);
-        }
-
-        [HttpGet]
-        public IActionResult About()
-        {
-            return View();
         }
 
         [HttpGet]

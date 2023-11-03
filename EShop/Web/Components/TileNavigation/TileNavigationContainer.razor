@@ -1,0 +1,20 @@
+﻿<div class="category-heading-large">@CategoryHeading</div>
+<div class="sub-category-images">
+    @MainCategory
+</div>
+
+<div class="sub-category-images-bottom">
+    @SubCategoryBottom
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public string CategoryHeading { get; set; } = "Untitled";
+
+    [Parameter]
+    public RenderFragment? MainCategory { get; set; }
+
+    [Parameter]
+    public RenderFragment? SubCategoryBottom { get; set; }
+}

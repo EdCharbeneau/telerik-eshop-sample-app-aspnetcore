@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Web.Views.Home.Clothing
+@{
 	ViewData["Title"] = "Clothing";
 }
 
@@ -22,19 +23,5 @@
 		})
 	)
 
-	<div class="category-heading-large">Clothes</div>
-	<div class="sub-category-images">
-		<div class="column-clothes">
-			<a href="@Url.Action("Category", "Products")?subCategory=Jerseys">
-				<div class="category-heading">Jerseys</div>
-				<img src="~/images/jerseys.png" class="category-large-image" />
-			</a>
-		</div>
-		<div class="column-clothes">
-			<a href="@Url.Action("Category", "Products")?subCategory=Shorts">
-				<div class="category-heading">Shorts</div>
-				<img src="~/images/shorts.png" class="category-large-image" />
-			</a>
-		</div>
-	</div>
+	<component type="typeof(ClothingNavigation)" render-mode="Static"/>
 </div>

@@ -1,6 +1,8 @@
-﻿@{
+﻿@using Web.Components.Pages
+@{
 	ViewData["Title"] = ViewBag.SubCategory;
 }
+		<component type="typeof(Counter)" render-mode="ServerPrerendered" />
 
 <style>
 	.category-content-container {

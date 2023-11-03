@@ -10,7 +10,8 @@ using BundlerMinifier.TagHelpers;
 using Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddRazorComponents().AddInteractiveServerComponents(); // Required for Blazor (Razor Components)
+//builder.Services.AddRazorComponents().AddInteractiveServerComponents(); // Required for Blazor (Razor Components)
+////builder.Services.AddServerSideBlazor();
 builder.Services.AddRazorPages().AddNewtonsoftJson();
 builder.Services.AddControllers();
 builder.Services.AddMvc();
@@ -53,8 +54,7 @@ builder.Services.AddKendo();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
-
-
+builder.Services.AddTelerikBlazor();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -72,8 +72,9 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapControllers();
-app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
-
+//app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+////app.MapRazorComponents<Routes>().AddInteractiveServerRenderMode();
+//app.MapFallbackToController("Blazor", "Home");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

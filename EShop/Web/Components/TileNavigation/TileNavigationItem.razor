@@ -1,0 +1,17 @@
+﻿<div class="@CssClass">
+    <TileLinkItem Heading="@Heading" ImageCss="@ImageCss" ImageUrl="@ImageUrl"></TileLinkItem>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Heading { get; set; } = "Untitled";
+
+    [Parameter]
+    public string? ImageUrl { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; } = "column";
+
+    [Parameter]
+    public string ImageCss { get; set; } = "category-large-image";
+}
