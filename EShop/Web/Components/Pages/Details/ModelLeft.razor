@@ -4,9 +4,9 @@
 @using Telerik.Blazor.Components
 @using Telerik.FontIcons
 @using Telerik.SvgIcons
+@inject IJSRuntime JSRuntime
 @inject IProductService ProductService
 <TelerikRootComponent>
-    <span>Blazor</span>
     <div class="model-data-left-container">
         <div class="model-data-row">
             <span class="title">Product Name</span>
@@ -21,15 +21,13 @@
             <div class="model-data-row">
                 <span class="title">Size</span>
                 <span class="value size">
-
                     <TelerikDropDownList Data="@availableSizes"
                                          @bind-Value="@Model.Size"
                                          TextField="@Model.Size"
                                          ValueField="@Model.Size"
-                                         DefaultText="Select a size..."
-                                         Width="100%">
+                                         Size="@ThemeConstants.DropDownList.Size.Medium"
+                                         OnChange="@SelectAlternateProductVersion">
                     </TelerikDropDownList>
-                @* .Events(e => e.Change(@<text>function () { selectAlternateProductVersion(@Model.ModelId); }</text>)) *@
                 </span>
             </div>
         }
@@ -44,7 +42,11 @@
         {
             <div class="model-data-row">
                 <span class="title">Color</span>
-                <div class="value">@Model.Color</div>
+                <TelerikRadioGroup Data="@availableColors"
+                                   @bind-Value="@Model.Color"
+                                   Layout="@RadioGroupLayout.Horizontal"
+                                   OnChange="@SelectAlternateProductVersion">
+                </TelerikRadioGroup>
             </div>
         }
         @if (Model.Description != null)
@@ -62,10 +64,28 @@
     public ProductDetailsViewModel Model { get; set; } = new();
 
     private string[]? availableSizes;
+    private string[]? availableColors;
 
     protected override async Task OnInitializedAsync()
     {
-        var results = await ProductService.GetAvailableSizes(Model.Id);
-        availableSizes = results.ToArray();
+        var sizesResults = await ProductService.GetAvailableSizes(Model.Id);
+        availableSizes = sizesResults.ToArray();
+
+        var colorResults = await ProductService.GetAvailableColors(Model.Id);
+        availableColors = colorResults.ToArray();
+    }
+    async Task SelectAlternateProductVersion() {
+        if (Model.Size != null && Model.Color != null)
+        {
+            await JSRuntime.InvokeVoidAsync("BlazorShim.selectProductByColorAndSize", Model.ModelId, Model.Color, Model.Size);
+        }
+        else if (Model.Size != null)
+        {
+            await JSRuntime.InvokeVoidAsync("BlazorShim.selectProductBySize", Model.ModelId, Model.Size);
+        }
+        else if (Model.Color != null)
+        {
+            await JSRuntime.InvokeVoidAsync("BlazorShim.selectProductByColor", Model.ModelId, Model.Color);
+        }
     }
 }

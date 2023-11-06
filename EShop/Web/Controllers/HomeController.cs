@@ -11,11 +11,11 @@ namespace Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-		public IActionResult Blazor()
-		{
-			return View("_Host");
-		}
-		private readonly IProductService productService;
+        public IActionResult Blazor()
+        {
+            return View("_Host");
+        }
+        private readonly IProductService productService;
 
         public HomeController(IProductService productService)
         {

@@ -1,3 +1,7 @@
+var BlazorShim = BlazorShim || {};
+BlazorShim.selectProductBySize = (modelId, size) => { selectProductBySize(modelId, size) };
+BlazorShim.selectProductByColor = (modelId, color) => { selectProductBySize(modelId, color) };
+BlazorShim.selectProductByColorAndSize = (modelId, size, color) => { selectProductByColorAndSize(modelId, size, color) };
 function selectAlternateProductVersion(modelId) {
 	var size = $("#sizePicker").data("kendoDropDownList").value();
 	var color = $("#colorPicker").data("kendoRadioGroup").value();

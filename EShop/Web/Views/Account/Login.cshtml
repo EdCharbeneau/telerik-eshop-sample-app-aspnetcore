@@ -9,7 +9,7 @@
 
     @(Html.Kendo().Form<Models.InputModels.LoginUserInpuModel>()
         .Name("loginForm")
-        .HtmlAttributes(new { controller = "Account", action = "Login", method = "POST", @class = "login-register-form"})
+        .HtmlAttributes(new { controller = "Account", action = "/Account/Login", method = "POST", @class = "login-register-form" })
         .Validatable(v => 
         {
             v.ValidateOnBlur(true);

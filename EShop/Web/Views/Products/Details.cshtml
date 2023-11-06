@@ -4,9 +4,8 @@
 	ViewData["Title"] = "Product Details";
 }
 @model Models.ViewModels.ProductDetailsViewModel;
-<component type="typeof(Counter)" render-mode="ServerPrerendered" />
 
-@* <div class="model-details-container wrap-width">
+<div class="model-details-container wrap-width">
 	@(Html.Kendo().Breadcrumb()
 		.Name("breadcrumb")
 		.Navigational(true)
@@ -128,7 +127,6 @@
 				</div>
 				
 				<component type="typeof(ModelLeft)" param-Model="Model" render-mode="Server"/>
-				<component type="typeof(Counter)" render-mode="ServerPrerendered"/>
 
 				<div class="model-data-right-container">
 					@{
@@ -212,4 +210,4 @@
 
 		distinguishFavorites();
 	});
-</script> *@
+</script>
