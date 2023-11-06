@@ -1,0 +1,31 @@
+﻿@using Models.ViewModels
+@using Services.Interfaces
+@inject IProductService ProductService
+@inject IUserService UserService
+<div class="model-details">
+    <ModelImage ImageUrl="@imageUrl" />
+    <ModelInfo Model="Model" AvailableSizes="availableSizes" AvailableColors="availableColors" />
+</div>
+
+@code {
+    [Parameter]
+    public ProductDetailsViewModel Model { get; set; } = new();
+
+    private string[]? availableSizes;
+    private string[]? availableColors;
+    private bool? favorite;
+
+    private string? imageUrl;
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await ProductService.GetProductLargePhotoById(Model.PhotoId ??= 0);
+        imageUrl = $"data:image/png;base64,{Convert.ToBase64String(result)}";
+
+        var sizesResults = await ProductService.GetAvailableSizes(Model.Id);
+        availableSizes = sizesResults.ToArray();
+
+        var colorResults = await ProductService.GetAvailableColors(Model.Id);
+        availableColors = colorResults.ToArray();
+
+    }
+}

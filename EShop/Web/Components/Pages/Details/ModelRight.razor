@@ -1,0 +1,51 @@
+﻿@using Models.ViewModels
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Telerik.FontIcons
+@using Telerik.SvgIcons
+@inject IJSRuntime JSRuntime
+
+<div class="model-data-right-container">
+    @{
+        if (Model.DiscountPct != 0)
+        {
+            <div class="price"> @(string.Format("{0:C}", Model.FinalPrice))</div>
+        }
+        else
+        {
+            <div class="price">$@Model.ListPrice.ToString("N2")</div>
+        }
+    }
+    <div class="buttons-container">
+        <TelerikButton Icon="@SvgIcon.Cart"
+                       ThemeColor="@(ThemeConstants.Button.ThemeColor.Primary)" 
+                       OnClick="AddProductToShoppingCart">Add to cart</TelerikButton>
+
+        <TelerikButton Icon="@favoriteButtonIcon"
+                       ThemeColor="@favoriteButtonTheme" 
+                       OnClick="AddProductToFavorites">@favoriteButtonText</TelerikButton>
+
+    </div>
+</div>
+@code {
+    [Parameter]
+    public ProductDetailsViewModel Model { get; set; } = new();
+
+    private string favoriteButtonTheme => isFavorite ? ThemeConstants.Button.ThemeColor.Secondary : ThemeConstants.Button.ThemeColor.Primary;
+    private ISvgIcon favoriteButtonIcon => isFavorite ? @SvgIcon.Heart : @SvgIcon.HeartOutline;
+    private string favoriteButtonText => isFavorite ? "Added to favorites" : "Add to favorites";
+
+    private bool isFavorite;
+
+    async Task AddProductToShoppingCart()
+    {
+        await JSRuntime.InvokeVoidAsync("BlazorShim.addProductToShoppingCart", Model.Id);
+    }
+
+    async Task AddProductToFavorites()
+    {
+        await JSRuntime.InvokeVoidAsync("BlazorShim.addProductToFavorites", Model.Id);
+        isFavorite = !isFavorite;
+    }
+
+}

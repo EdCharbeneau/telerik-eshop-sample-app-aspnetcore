@@ -10,7 +10,7 @@ using BundlerMinifier.TagHelpers;
 using Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddRazorComponents().AddInteractiveServerComponents(); // Required for Blazor (Razor Components)
+builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddCircuitOptions(opt => opt.DetailedErrors=true); // Required for Blazor (Razor Components)
 builder.Services.AddRazorPages().AddNewtonsoftJson();
 builder.Services.AddControllers();
 builder.Services.AddMvc();

@@ -34,7 +34,9 @@
 			.ShowText(true);
 		})
 	)
-	<div class="model-details">
+
+	<component type="typeof(ModelDetails)" param-Model="Model" render-mode="ServerPrerendered" />
+@* 	<div class="model-details">
 		<div class="model-image-container">
 			<img class="model-image" src="@Url.Action("GetProductLargePhotoById", "Products")?photoId=@Model.PhotoId"/>			
 		</div>
@@ -64,7 +66,7 @@
 			</div>
 			<hr class="splitter1">
 			<div class="model-data">
-				<div class="model-data-left-container">
+				@* <div class="model-data-left-container">
 					<div class="model-data-row">
 						<span class="title">Product Name</span>
 						<span class="value">@Model.Name</span>
@@ -124,7 +126,7 @@
 							</div>
 						}
 					}
-				</div>
+				</div>@
 				
 				<component type="typeof(ModelLeft)" param-Model="Model" render-mode="Server"/>
 
@@ -160,7 +162,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> *@
 
 	<hr class="splitter2">
 

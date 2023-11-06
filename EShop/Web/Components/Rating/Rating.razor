@@ -1,0 +1,23 @@
+﻿@for (int i = 0; i < WholeStars; i++)
+{
+    <span class="k-rating-item"><span class="k-icon k-svg-icon k-svg-i-star-outline k-icon-xl" aria-hidden="true"><svg viewBox="0 0 512 512" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M480 202.4 319.1 188 256 32l-63.1 156L32 202.4l122 111.7L117.2 480 256 391.5 394.8 480 358 314.1l122-111.7zM256 353.6l-90.8 57.9 24-108.5-82.1-75.2 108.1-9.7L256 117.3l40.8 100.8 108.1 9.7-82.1 75.2 24.1 108.5-90.9-57.9z"></path></svg></span></span>
+}
+@if (!Partial)
+{
+    <span class="k-rating-item k-selected"><span class="k-rating-precision-complement"><span class="k-icon k-svg-icon k-svg-i-star-outline k-icon-xl" aria-hidden="true"><svg viewBox="0 0 512 512" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M480 202.4 319.1 188 256 32l-63.1 156L32 202.4l122 111.7L117.2 480 256 391.5 394.8 480 358 314.1l122-111.7zM256 353.6l-90.8 57.9 24-108.5-82.1-75.2 108.1-9.7L256 117.3l40.8 100.8 108.1 9.7-82.1 75.2 24.1 108.5-90.9-57.9z"></path></svg></span></span><span class="k-rating-precision-part" style="clip-path: inset(0px 50% 0px 0px);"><span class="k-icon k-svg-icon k-svg-i-star k-icon-xl" aria-hidden="true"><svg viewBox="0 0 512 512" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M256 391.5 117.2 480 154 314.1 32 202.4 192.9 188 256 32l63.1 156L480 202.4 358 314.1 394.8 480 256 391.5z"></path></svg></span></span><span style="width: 24px; height: 24px; display: block;"></span></span>
+}
+@for (int i = 0; i < (5 - WholeStars); i++)
+{
+    <span class="k-rating-item"><span class="k-icon k-svg-icon k-svg-i-star-outline k-icon-xl" aria-hidden="true"><svg viewBox="0 0 512 512" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M480 202.4 319.1 188 256 32l-63.1 156L32 202.4l122 111.7L117.2 480 256 391.5 394.8 480 358 314.1l122-111.7zM256 353.6l-90.8 57.9 24-108.5-82.1-75.2 108.1-9.7L256 117.3l40.8 100.8 108.1 9.7-82.1 75.2 24.1 108.5-90.9-57.9z"></path></svg></span></span>
+}
+<span class="k-rating-item k-selected"><span class="k-icon k-svg-icon k-svg-i-star k-icon-xl" aria-hidden="true"><svg viewBox="0 0 512 512" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M256 391.5 117.2 480 154 314.1 32 202.4 192.9 188 256 32l63.1 156L480 202.4 358 314.1 394.8 480 256 391.5z"></path></svg></span></span>
+
+@code {
+    [Parameter]
+    public double AverageRating { get; set; }
+
+    private int WholeStars => Convert.ToInt32(Math.Truncate(AverageRating));
+
+    private bool Partial => (AverageRating - WholeStars) > 0;
+
+}

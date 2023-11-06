@@ -1,0 +1,21 @@
+﻿@using Models.ViewModels
+<div class="model-info-container">
+    <ModelHeading Model="Model" />
+    <hr class="splitter1">
+    <div class="model-data">
+        <ModelLeft Model="Model" AvailableSizes="AvailableSizes" AvailableColors="AvailableColors"/>
+        <ModelRight Model="Model" />
+
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public ProductDetailsViewModel Model { get; set; } = new();
+
+    [Parameter]
+    public string[]? AvailableSizes { get; set; }
+
+    [Parameter]
+    public string[]? AvailableColors { get; set; }
+}

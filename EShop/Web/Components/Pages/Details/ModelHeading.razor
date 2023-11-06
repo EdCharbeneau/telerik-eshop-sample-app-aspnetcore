@@ -1,0 +1,21 @@
+﻿@using Models.ViewModels
+<div class="model-heading">
+	<div class="model-title">
+			@if (Model.Model == null)
+			{
+				@Model.Name
+			}
+			else
+			{
+				@Model.Model
+			}
+	</div>
+	<Rating AverageRating="Model.AverageRating"/>
+</div>
+
+@code {
+	[Parameter]
+	public ProductDetailsViewModel Model { get; set; } = new();
+
+
+}

@@ -1,3 +1,5 @@
+var BlazorShim = BlazorShim || {};
+BlazorShim.addProductToShoppingCart = (productId) => { addProductToShoppingCartWithProductId(productId) };
 function getShoppingCartGrid() {
 	return $("#shoppingCartGrid").data("kendoGrid");
 }
@@ -54,6 +56,10 @@ function calculateShoppingCartTotal() {
 
 function addProductToShoppingCart(e) {
 	var productId = e.sender.element[0].id.split('_')[1];
+	addProductToShoppingCartWithProductId(productId);
+}
+
+function addProductToShoppingCartWithProductId(productId) {
 	let getUrl = window.location.href.indexOf('eshop') > 0 ? "/aspnet-core/eshop/Account/AddProductToShoppingCart?productId=" : "/Account/AddProductToShoppingCart?productId=";
 	$.post(getUrl + productId, function () {
 		getShoppingCartItemsCount();
