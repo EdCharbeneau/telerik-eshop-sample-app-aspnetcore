@@ -25,10 +25,10 @@
 				.Name("shoppingCartGrid")
 				.Columns(columns =>
 				{
-					columns.Bound(p => p.ProductName).ClientTemplateId("shoppingCartProduct-template");
+					columns.Bound(p => p.ProductName)
+						.ClientTemplateId("shoppingCartProduct-template");
 					columns.Bound(p => p.ProductPrice);
 					columns.Bound(p => p.Quantity).Editable("function() { return false; }")
-						.HtmlAttributes(new { @class = "templateCell" })
 						.ClientTemplateId("quantityEditor-template");
 					columns.Bound(p => p.Total)
 						.HtmlAttributes(new { @class = "currency" })
@@ -89,7 +89,7 @@
 <script id="quantityEditor-template" type="text/html">
 	@(Html.Kendo().NumericTextBox()
 		.Name("quantityEditor_#=ShoppingCartItemId#")
-		.HtmlAttributes(new { data_bind = "value: Quantity", @class = "quantity-editor" })
+		.HtmlAttributes(new { data_bind = "value: Quantity", @class="quantity-editor" })
 		.Decimals(0)
 		.Format("\\#")
 		.Min(1)
