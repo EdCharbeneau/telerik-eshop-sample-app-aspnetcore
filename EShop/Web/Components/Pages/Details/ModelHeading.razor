@@ -1,5 +1,4 @@
-﻿@using Models.ViewModels
-@using Web.Components.Rating
+﻿@using Web.Components.Rating
 <div class="model-heading">
 	<div class="model-title">
 			@if (Model.Model == null)
@@ -17,6 +16,4 @@
 @code {
 	[Parameter]
 	public ProductDetailsViewModel Model { get; set; } = new();
-
-
 }
