@@ -10,7 +10,9 @@ using BundlerMinifier.TagHelpers;
 using Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddCircuitOptions(opt => opt.DetailedErrors=true); // Required for Blazor (Razor Components)
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents()
+    .AddCircuitOptions(opt => opt.DetailedErrors=true); // Required for Blazor (Razor Components)
 builder.Services.AddRazorPages().AddNewtonsoftJson();
 builder.Services.AddControllers();
 builder.Services.AddMvc();
@@ -71,11 +73,12 @@ app.UseAntiforgery(); // Required for Blazor routing security
 app.UseSession();
 
 app.MapControllers();
-//app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapBlazorHub();
+//app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 app.MapFallbackToController("Blazor", "Home");
 app.Run();
