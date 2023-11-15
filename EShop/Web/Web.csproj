@@ -12,13 +12,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Telerik.Reporting.OpenXmlRendering" Version="17.2.23.1114" />
-    <PackageReference Include="Telerik.Reporting.Services.AspNetCore" Version="17.2.23.1114" />
-    <PackageReference Include="Telerik.Reporting.WebServiceDataSource" Version="17.2.23.1114" />
+    <PackageReference Include="Telerik.Reporting.OpenXmlRendering.Trial" Version="17.2.23.1114" />
+    <PackageReference Include="Telerik.Reporting.Services.AspNetCore.Trial" Version="17.2.23.1114" />
+    <PackageReference Include="Telerik.Reporting.WebServiceDataSource.Trial" Version="17.2.23.1114" />
+    <PackageReference Include="Telerik.UI.for.AspNet.Core.Trial" Version="2023.3.1114" />
+    <PackageReference Include="Telerik.UI.for.Blazor.Trial" Version="5.0.0" />
+    <PackageReference Include="Telerik.Web.Captcha.Trial" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.0-rc.2.23480.2" />
-    <PackageReference Include="Telerik.UI.for.AspNet.Core" Version="2023.3.1114" />
-    <PackageReference Include="Telerik.UI.for.Blazor" Version="5.0.0" />
-    <PackageReference Include="Telerik.Web.Captcha" Version="1.1.2" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
